@@ -7,10 +7,14 @@
 //
 
 #include "ImageSet.hpp"
+#include "FileIO.hpp"
 
 unsigned long ImageSet::LoadSet(std::string file_location, bool black_white) {
     FileIO file_io;
-    file_io.OpenFileRead(file_location);
+    
+    if (!file_io.OpenFileRead(file_location)) {
+        return FILE_NOT_OPEN;
+    }
     
     std::string image_line = file_io.ReadLine();
     std::string image_data[IMAGE_SIZE] = {""};
@@ -38,11 +42,16 @@ unsigned long ImageSet::LoadSet(std::string file_location, bool black_white) {
 
 unsigned long ImageSet::LoadDescriptors(std::string file_location) {
     FileIO file_io;
+    
+    if (!file_io.OpenFileRead(file_location)) {
+        return FILE_NOT_OPEN;
+    }
+    
     int descriptor = file_io.ReadInt();
     
     while (descriptor != -1) {
         image_descriptor.push_back(descriptor);
-        std::string descriptor = file_io.ReadLine();
+        descriptor = file_io.ReadInt();
     }
     
     return image_descriptor.size();

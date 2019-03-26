@@ -12,6 +12,7 @@
 		271ADC9F22454A1100EA4DC3 /* ImageSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271ADC9D22454A1100EA4DC3 /* ImageSet.cpp */; };
 		271ADCA222498B8300EA4DC3 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271ADCA022498B8300EA4DC3 /* Model.cpp */; };
 		272B23A42238266B00A741C1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 272B23A32238266B00A741C1 /* main.cpp */; };
+		27B2EDFC2249FC10006F0D2C /* ModelHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EDFA2249FC10006F0D2C /* ModelHandler.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,8 @@
 		271ADCA122498B8300EA4DC3 /* Model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Model.hpp; sourceTree = "<group>"; };
 		272B23A02238266B00A741C1 /* Naive Bayes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Naive Bayes"; sourceTree = BUILT_PRODUCTS_DIR; };
 		272B23A32238266B00A741C1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		27B2EDFA2249FC10006F0D2C /* ModelHandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ModelHandler.cpp; sourceTree = "<group>"; };
+		27B2EDFB2249FC10006F0D2C /* ModelHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ModelHandler.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,8 @@
 				271ADC9E22454A1100EA4DC3 /* ImageSet.hpp */,
 				271ADCA022498B8300EA4DC3 /* Model.cpp */,
 				271ADCA122498B8300EA4DC3 /* Model.hpp */,
+				27B2EDFA2249FC10006F0D2C /* ModelHandler.cpp */,
+				27B2EDFB2249FC10006F0D2C /* ModelHandler.hpp */,
 			);
 			path = "Naive Bayes";
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 272B23972238266B00A741C1;
 			productRefGroup = 272B23A12238266B00A741C1 /* Products */;
@@ -142,6 +148,7 @@
 				271ADC9C2245428300EA4DC3 /* Image.cpp in Sources */,
 				271ADCA222498B8300EA4DC3 /* Model.cpp in Sources */,
 				272B23A42238266B00A741C1 /* main.cpp in Sources */,
+				27B2EDFC2249FC10006F0D2C /* ModelHandler.cpp in Sources */,
 				271ADC99224541C500EA4DC3 /* FileIO.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

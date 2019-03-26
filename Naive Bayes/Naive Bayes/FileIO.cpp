@@ -6,6 +6,9 @@
 //  Copyright © 2019 David Kluszczynski. All rights reserved.
 //
 
+// Data Directory:
+// /Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata
+
 #include "FileIO.hpp"
 
 bool FileIO::OpenFileRead(std::string file_name) {
@@ -30,10 +33,10 @@ std::string FileIO::ReadLine() {
 
 int FileIO::ReadInt() {
     if (read_file.is_open()) {
+        std::string value;
         if (!read_file.eof()) {
-            int value;
             read_file >> value;
-            return value;
+            return std::stoi(value);
         }
         
         FileIO::read_file.close();
@@ -44,10 +47,10 @@ int FileIO::ReadInt() {
 
 double FileIO::ReadDouble() {
     if (read_file.is_open()) {
+        std::string value;
         if (!read_file.eof()) {
-            double value;
             read_file >> value;
-            return value;
+            return std::stod(value);
         }
         
         FileIO::read_file.close();
@@ -57,19 +60,18 @@ double FileIO::ReadDouble() {
 }
 
 bool FileIO::OpenFileWrite(std::string file_name) {
-    FileIO::write_file.open(file_name, std::ios_base::app);
+    FileIO::write_file.open(file_name);
     
     return FileIO::write_file.is_open();
 }
 
-void FileIO::SaveModel(Model model) {
-    if (FileIO::write_file.is_open()) {
-        write_file << model;
-        std::cout << std::endl << "Model saved" << std::endl;
-    }
+std::ofstream& FileIO::GetWriteFile() {
+    return FileIO::write_file;
 }
 
 bool FileIO::Close() {
+    write_file.flush();
+    
     read_file.close();
     write_file.close();
     

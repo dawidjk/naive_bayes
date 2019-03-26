@@ -9,10 +9,11 @@
 #ifndef FileIO_hpp
 #define FileIO_hpp
 
+#define FILE_NOT_OPEN -2
+
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "Model.hpp"
 
 class FileIO {
 private:
@@ -25,7 +26,7 @@ public:
     int ReadInt();
     double ReadDouble();
     bool OpenFileWrite(std::string file_name);
-    void SaveModel(Model model);
+    std::ofstream& GetWriteFile();
     bool Close();
     
 };
