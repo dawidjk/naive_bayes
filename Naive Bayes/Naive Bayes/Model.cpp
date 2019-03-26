@@ -44,6 +44,26 @@ bool Model::Train(ImageSet set, int smooth_factor) {
     return true;
 }
 
+int Model::Evaluate(Image image) {
+    double class_post_prob[CLASSES] = { 0 };
+    
+    for (int i = 0; i < CLASSES; ++i) {
+        double probability = 0;
+        
+        for (int j = 0; j < IMAGE_SIZE; ++j) {
+            for (int k = 0; k < IMAGE_SIZE; ++k) {
+                if (image.GetValue(j, k) == BLACK_CHAR) {
+                    probability += log(model[i][j][k]);
+                } else {
+                    probability += log(1 - model[i][j][k]);
+                }
+            }
+        }
+        
+        class_post_prob[i] = log(class_count[i]) + probability;
+    }
+}
+
 bool Model::LoadModel(std::string file_location) {
     FileIO file_io;
     
