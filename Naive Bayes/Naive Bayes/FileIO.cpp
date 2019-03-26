@@ -28,6 +28,20 @@ std::string FileIO::ReadLine() {
     return "";
 }
 
+int FileIO::ReadInt() {
+    if (read_file.is_open()) {
+        if (!read_file.eof()) {
+            int value;
+            read_file >> value;
+            return value;
+        }
+        
+        FileIO::read_file.close();
+    }
+    
+    return -1;
+}
+
 bool FileIO::OpenFileWrite(std::string file_name) {
     FileIO::write_file.open(file_name, std::ios_base::app);
     

@@ -8,13 +8,13 @@
 
 #include "ImageSet.hpp"
 
-bool ImageSet::LoadSet(std::string file_location) {
+unsigned long ImageSet::LoadSet(std::string file_location, bool black_white) {
     FileIO file_io;
     file_io.OpenFileRead(file_location);
     
     std::string image_line = file_io.ReadLine();
-    int line_count = 0;
     std::string image_data[IMAGE_SIZE] = {""};
+    int line_count = 0;
     
     while (image_line != "") {
         image_data[line_count] = image_line;
@@ -22,8 +22,8 @@ bool ImageSet::LoadSet(std::string file_location) {
         
         if (line_count == IMAGE_SIZE) {
             Image image;
-            image.LoadImage(image_data);
-            ImageSet.push_back(image);
+            image.LoadImage(image_data, black_white);
+            image_set.push_back(image);
             
             line_count = 0;
         }
@@ -31,9 +31,35 @@ bool ImageSet::LoadSet(std::string file_location) {
         image_line = file_io.ReadLine();
     }
     
-    if (line_count == 0) {
-        return true;
+    file_io.Close();
+    
+    return image_set.size();
+}
+
+unsigned long ImageSet::LoadDescriptors(std::string file_location) {
+    FileIO file_io;
+    int descriptor = file_io.ReadInt();
+    
+    while (descriptor != -1) {
+        image_descriptor.push_back(descriptor);
+        std::string descriptor = file_io.ReadLine();
     }
     
-    return false;
+    return image_descriptor.size();
+}
+
+unsigned long ImageSet::Size() {
+    if (image_set.size() != image_descriptor.size()) {
+        return MISMATCHED_DIM;
+    } else {
+        return image_set.size();
+    }
+}
+
+Image ImageSet::GetImageAt(int index) {
+    return image_set.at(index);
+}
+
+int ImageSet::GetDescriptorAt(int index) {
+    return image_descriptor.at(index);
 }

@@ -21,6 +21,7 @@ private:
 public:
     bool OpenFileRead(std::string file_name);
     std::string ReadLine();
+    int ReadInt();
     bool OpenFileWrite(std::string file_name);
     void WriteBoard(/*Define Type*/);
     bool Close();

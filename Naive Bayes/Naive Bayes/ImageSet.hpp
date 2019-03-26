@@ -13,11 +13,18 @@
 #include "Image.hpp"
 #include "FileIO.hpp"
 
+#define MISMATCHED_DIM -1
+
 class ImageSet {
 private:
-    std::vector<Image> ImageSet;
+    std::vector<Image> image_set;
+    std::vector<int> image_descriptor;
 public:
-    bool LoadSet(std::string file_location);
+    unsigned long LoadSet(std::string file_location, bool black_white);
+    unsigned long LoadDescriptors(std::string file_location);
+    unsigned long Size();
+    Image GetImageAt(int index);
+    int GetDescriptorAt(int index);
 };
 
 #endif /* ImageSet_hpp */
