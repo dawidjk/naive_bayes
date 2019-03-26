@@ -10,7 +10,6 @@
 #include <string>
 #include "FileIO.hpp"
 
-const int kLaplaceFactor = 1;
 const std::string kConfusionMatrix = "Evaulate Confusion Matrix?";
 const std::string kLoadModel = "Load model?";
 const std::string kTrainModel = "Train Model?";
@@ -27,14 +26,14 @@ const std::string kYes = "Y";
 const std::string kNo = "N";
 const std::string kSpace = " ";
 
-void ModelHandler::TrainModel() {
+void ModelHandler::TrainModel(double training_factor) {
     if (!PerformAction(kTrainModel)) {
         return;
     }
     
     LoadImageSet();
     LoadDescriptor();
-    if (!model.Train(image_set, kLaplaceFactor)) {
+    if (!model.Train(image_set, training_factor)) {
         std::cout << std::endl << kMismatchedDim << std::endl;
     }
     SaveModel();
@@ -167,4 +166,94 @@ bool ModelHandler::PerformAction(std::string action_text) {
     }
     
     return true;
+}
+
+double ModelHandler::FindBestSmoothingFactor() {
+    double smoothing_factor = 0.1;
+    double accuracy = 0.0;
+    
+    ImageSet train_set;
+    ImageSet test_set;
+    
+    std::string train_images;
+    std::string train_labels;
+    std::string test_images;
+    std::string test_labels;
+    
+    std::cout << "Train data: " << std::endl;
+    
+    int loaded = FILE_NOT_OPEN;
+    
+    while (loaded == FILE_NOT_OPEN) {
+        std::cout << kImageSet << std::endl;
+        std::cin >> train_images;
+        loaded = (int) train_set.LoadSet(train_images, true);
+    }
+    
+    loaded = FILE_NOT_OPEN;
+    
+    while (loaded == FILE_NOT_OPEN) {
+        std::cout << kImageDescriptor << std::endl;
+        std::cin >> train_labels;
+        loaded = (int) train_set.LoadDescriptors(train_labels);
+    }
+    
+    std::cout << "Test data: " << std::endl;
+    
+    loaded = FILE_NOT_OPEN;
+    while (loaded == FILE_NOT_OPEN) {
+        std::cout << kImageSet << std::endl;
+        std::cin >> test_images;
+        loaded = (int) test_set.LoadSet(test_images, true);
+    }
+    
+    loaded = FILE_NOT_OPEN;
+    
+    while (loaded == FILE_NOT_OPEN) {
+        std::cout << kImageDescriptor << std::endl;
+        std::cin >> test_labels;
+        loaded = (int) test_set.LoadDescriptors(test_labels);
+    }
+    
+    for (double i = 0.1; i < 10.1; i += 0.1) {
+        Model model;
+        
+        if (!model.Train(train_set, i)) {
+            std::cout << std::endl << kMismatchedDim << std::endl;
+        }
+        
+        std::vector<int> labels;
+        for (int i = 0; i < test_set.ImageSetSize(); ++i) {
+            labels.push_back(model.Evaluate(test_set.GetImageAt(i)));
+        }
+        
+        int accurate_labels[CLASSES] = { 0 };
+        int label_totals[CLASSES] = { 0 };
+        
+        for (int i = 0; i < test_set.ImageSetSize(); ++i) {
+            if (labels.at(i) == test_set.GetDescriptorAt(i)) {
+                accurate_labels[labels.at(i)]++;
+            }
+            
+            label_totals[test_set.GetDescriptorAt(i)]++;
+        }
+        
+        double train_accuracy = 0;
+        
+        for (int i = 0; i < CLASSES; ++i) {
+            train_accuracy += ((double) accurate_labels[i]) / ((double) label_totals[i]);
+        }
+        
+        train_accuracy *= 10;
+        
+        if (train_accuracy > accuracy) {
+            accuracy = train_accuracy;
+            smoothing_factor = i;
+            
+            std::cout << accuracy << std::endl;
+        }
+    }
+    
+    std::cout << std::endl << smoothing_factor << " " << accuracy << std::endl;
+    return smoothing_factor;
 }

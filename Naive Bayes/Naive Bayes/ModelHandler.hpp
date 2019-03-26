@@ -24,8 +24,9 @@ private:
     void ConfusionMatrix(std::vector<int> labels, std::string file_location);
     bool PerformAction(std::string action_text);
 public:
-    void TrainModel();
+    void TrainModel(double smoothing_factor);
     void ClassifyImages();
+    double FindBestSmoothingFactor();
 };
 
 #endif /* ModelHandler_hpp */
