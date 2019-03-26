@@ -22,6 +22,8 @@ public:
     unsigned long LoadSet(std::string file_location, bool black_white);
     unsigned long LoadDescriptors(std::string file_location);
     unsigned long Size();
+    unsigned long ImageSetSize();
+    unsigned long DescriptorSize();
     Image GetImageAt(int index);
     int GetDescriptorAt(int index);
 };

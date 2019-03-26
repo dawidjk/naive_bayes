@@ -94,8 +94,6 @@ bool Model::LoadModel(std::string file_location) {
             for (int k = 0; k < IMAGE_SIZE; ++k) {
                 double next_feature = file_io.ReadDouble();
                 
-                std::cout << next_feature << std::endl;
-                
                 if (next_feature == -1) {
                     std::cout << "-1" << std::endl;
                     return false;

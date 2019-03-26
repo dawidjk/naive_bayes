@@ -52,7 +52,8 @@ void ModelHandler::ClassifyImages() {
     file_io.OpenFileWrite(file_location);
     
     if (file_io.GetWriteFile().is_open()) {
-        for (int i = 0; i < image_set.Size(); ++i) {
+        std::cout << image_set.ImageSetSize();
+        for (int i = 0; i < image_set.ImageSetSize() - 1; ++i) {
             file_io.GetWriteFile() << model.Evaluate(image_set.GetImageAt(i)) << std::endl;
         }
     }

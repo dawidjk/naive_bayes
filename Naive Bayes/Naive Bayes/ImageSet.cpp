@@ -10,6 +10,8 @@
 #include "FileIO.hpp"
 
 unsigned long ImageSet::LoadSet(std::string file_location, bool black_white) {
+    image_set.clear();
+    
     FileIO file_io;
     
     if (!file_io.OpenFileRead(file_location)) {
@@ -41,6 +43,8 @@ unsigned long ImageSet::LoadSet(std::string file_location, bool black_white) {
 }
 
 unsigned long ImageSet::LoadDescriptors(std::string file_location) {
+    image_descriptor.clear();
+    
     FileIO file_io;
     
     if (!file_io.OpenFileRead(file_location)) {
@@ -63,6 +67,14 @@ unsigned long ImageSet::Size() {
     } else {
         return image_set.size();
     }
+}
+
+unsigned long ImageSet::ImageSetSize() {
+    return image_set.size();
+}
+
+unsigned long ImageSet::DescriptorSize() {
+    return image_descriptor.size();
 }
 
 Image ImageSet::GetImageAt(int index) {
