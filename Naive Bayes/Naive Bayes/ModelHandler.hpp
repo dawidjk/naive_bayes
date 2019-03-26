@@ -21,6 +21,8 @@ private:
     void LoadDescriptor();
     void SaveOutput();
     void SaveModel();
+    void ConfusionMatrix(std::vector<int> labels, std::string file_location);
+    bool PerformAction(std::string action_text);
 public:
     void TrainModel();
     void ClassifyImages();

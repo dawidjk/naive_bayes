@@ -10,6 +10,10 @@
 #include <math.h>
 #include "FileIO.hpp"
 
+const std::string kSavedLocation = "Enter saved model location: ";
+const std::string kSpace = " ";
+const std::string kNotOpen = "File not open for reading";
+
 bool Model::Train(ImageSet set, int smooth_factor) {
     int feature_count[CLASSES][IMAGE_SIZE][IMAGE_SIZE] = {{{ 0 }}};
     
@@ -83,7 +87,7 @@ bool Model::LoadModel(std::string file_location) {
     FileIO file_io;
     
     if (!file_io.OpenFileRead(file_location)) {
-        std::cout << "File not open for reading" << std::endl;
+        std::cout << kNotOpen << std::endl;
         return false;
     }
     
@@ -95,7 +99,6 @@ bool Model::LoadModel(std::string file_location) {
                 double next_feature = file_io.ReadDouble();
                 
                 if (next_feature == -1) {
-                    std::cout << "-1" << std::endl;
                     return false;
                 }
                 
@@ -103,7 +106,7 @@ bool Model::LoadModel(std::string file_location) {
             }
         }
     }
-    std::cout << "all done" << std::endl;
+    
     file_io.Close();
     return true;
 }
@@ -111,11 +114,11 @@ bool Model::LoadModel(std::string file_location) {
 std::ostream& operator << (std::ostream& os, const Model& model) {
     for (int i = 0; i < CLASSES; ++i) {
         
-        std::string format_model = std::to_string(model.class_count[i]) + " ";
+        std::string format_model = std::to_string(model.class_count[i]) + kSpace;
         
         for (int j = 0; j < IMAGE_SIZE; ++j) {
             for (int k = 0; k < IMAGE_SIZE; ++k) {
-                format_model += std::to_string(model.model[i][j][k]) + " ";
+                format_model += std::to_string(model.model[i][j][k]) + kSpace;
             }
         }
         
@@ -130,7 +133,7 @@ std::istream& operator >> (std::istream& is, Model& model) {
     bool save_file_loaded = false;
     
     while (!save_file_loaded) {
-        std::cout << "Enter saved model location: " << std::endl;
+        std::cout << kSavedLocation << std::endl;
         is >> file_location;
         std::cout << std::endl;
         
