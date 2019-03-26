@@ -36,10 +36,67 @@ bool Model::Train(ImageSet set, int smooth_factor) {
             for (int k = 0; k < IMAGE_SIZE; ++k) {
                 int features_seen = feature_count[i][j][k];
                 int count = class_count[i];
-                model[i][j][k] = log((features_seen + smooth_factor) / (count + 2 * smooth_factor));
+                model[i][j][k] = ((double) (features_seen + smooth_factor)) / ((double) (count + 2 * smooth_factor));
             }
         }
     }
     
     return true;
+}
+
+bool Model::LoadModel(std::string file_location) {
+    FileIO file_io;
+    
+    if (!file_io.OpenFileWrite(file_location)) {
+        return false;
+    }
+    
+    for (int i = 0; i < CLASSES; ++i) {
+        class_count[i] = file_io.ReadInt();
+        
+        for (int j = 0; j < IMAGE_SIZE; ++j) {
+            for (int k = 0; k < IMAGE_SIZE; ++k) {
+                double next_feature = file_io.ReadDouble();
+                
+                if (next_feature == -1) {
+                    return false;
+                }
+                
+                model[i][j][k] = next_feature;
+            }
+        }
+    }
+    
+    return true;
+}
+
+std::ostream& operator << (std::ostream& os, const Model& model) {
+    for (int i = 0; i < CLASSES; ++i) {
+        
+        std::string format_model = " ";
+        
+        for (int j = 0; j < IMAGE_SIZE; ++j) {
+            for (int k = 0; k < IMAGE_SIZE; ++k) {
+                format_model += model.model[i][j][k];
+                format_model += " ";
+            }
+        }
+        
+        os << format_model << std::endl;
+    }
+}
+
+std::istream& operator >> (std::istream& is, Model& model) {
+    std::string file_location;
+    bool save_file_loaded = false;
+    
+    while (!save_file_loaded) {
+        std::cout << "Enter saved model location: " << std::endl;
+        is >> file_location;
+        std::cout << std::endl;
+        
+        save_file_loaded = model.LoadModel(file_location);
+    }
+    
+    return is;
 }

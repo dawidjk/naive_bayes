@@ -12,6 +12,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "Model.hpp"
 
 class FileIO {
 private:
@@ -22,8 +23,9 @@ public:
     bool OpenFileRead(std::string file_name);
     std::string ReadLine();
     int ReadInt();
+    double ReadDouble();
     bool OpenFileWrite(std::string file_name);
-    void WriteBoard(/*Define Type*/);
+    void SaveModel(Model model);
     bool Close();
     
 };

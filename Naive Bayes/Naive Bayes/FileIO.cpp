@@ -42,18 +42,30 @@ int FileIO::ReadInt() {
     return -1;
 }
 
+double FileIO::ReadDouble() {
+    if (read_file.is_open()) {
+        if (!read_file.eof()) {
+            double value;
+            read_file >> value;
+            return value;
+        }
+        
+        FileIO::read_file.close();
+    }
+    
+    return -1;
+}
+
 bool FileIO::OpenFileWrite(std::string file_name) {
     FileIO::write_file.open(file_name, std::ios_base::app);
     
     return FileIO::write_file.is_open();
 }
 
-void FileIO::WriteBoard(/*Make sure to define*/) {
+void FileIO::SaveModel(Model model) {
     if (FileIO::write_file.is_open()) {
-        //FileIO::write_file << sudoku_board;
-        //std::cout << std::endl << "Solution saved" << std::endl;
-    } else {
-        //std::cout << sudoku_board;
+        write_file << model;
+        std::cout << std::endl << "Model saved" << std::endl;
     }
 }
 
