@@ -26,7 +26,7 @@ private:
 public:
     void TrainModel(double smoothing_factor);
     void ClassifyImages();
-    double FindBestSmoothingFactor();
+    double FindBestSmoothingFactor(double start, double end, double interval);
 };
 
 #endif /* ModelHandler_hpp */

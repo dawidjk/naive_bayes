@@ -25,6 +25,10 @@ const std::string kY_N = " (Y/N): ";
 const std::string kYes = "Y";
 const std::string kNo = "N";
 const std::string kSpace = " ";
+const std::string kTrain = "Train data: ";
+const std::string kTest = "Test data: ";
+
+const int kPercentMultiplier = 10;
 
 void ModelHandler::TrainModel(double training_factor) {
     if (!PerformAction(kTrainModel)) {
@@ -168,8 +172,8 @@ bool ModelHandler::PerformAction(std::string action_text) {
     return true;
 }
 
-double ModelHandler::FindBestSmoothingFactor() {
-    double smoothing_factor = 0.1;
+double ModelHandler::FindBestSmoothingFactor(double start, double end, double interval) {
+    double smoothing_factor = start;
     double accuracy = 0.0;
     
     ImageSet train_set;
@@ -180,7 +184,7 @@ double ModelHandler::FindBestSmoothingFactor() {
     std::string test_images;
     std::string test_labels;
     
-    std::cout << "Train data: " << std::endl;
+    std::cout << kTrain << std::endl;
     
     int loaded = FILE_NOT_OPEN;
     
@@ -198,7 +202,7 @@ double ModelHandler::FindBestSmoothingFactor() {
         loaded = (int) train_set.LoadDescriptors(train_labels);
     }
     
-    std::cout << "Test data: " << std::endl;
+    std::cout << kTest << std::endl;
     
     loaded = FILE_NOT_OPEN;
     while (loaded == FILE_NOT_OPEN) {
@@ -215,7 +219,7 @@ double ModelHandler::FindBestSmoothingFactor() {
         loaded = (int) test_set.LoadDescriptors(test_labels);
     }
     
-    for (double i = 0.1; i < 10.1; i += 0.1) {
+    for (double i = start; i < end; i += interval) {
         Model model;
         
         if (!model.Train(train_set, i)) {
@@ -244,16 +248,13 @@ double ModelHandler::FindBestSmoothingFactor() {
             train_accuracy += ((double) accurate_labels[i]) / ((double) label_totals[i]);
         }
         
-        train_accuracy *= 10;
+        train_accuracy *= kPercentMultiplier;
         
         if (train_accuracy > accuracy) {
             accuracy = train_accuracy;
             smoothing_factor = i;
-            
-            std::cout << accuracy << std::endl;
         }
     }
     
-    std::cout << std::endl << smoothing_factor << " " << accuracy << std::endl;
     return smoothing_factor;
 }

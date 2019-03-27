@@ -19,5 +19,5 @@ int main(int argc, const char * argv[]) {
     //model_handler.TrainModel();
     //model_handler.ClassifyImages();
     
-    model_handler.FindBestSmoothingFactor();
+    model_handler.FindBestSmoothingFactor(0, 5, 0.01);
 }
