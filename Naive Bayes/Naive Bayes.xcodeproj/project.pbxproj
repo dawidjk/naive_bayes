@@ -13,6 +13,7 @@
 		271ADCA222498B8300EA4DC3 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271ADCA022498B8300EA4DC3 /* Model.cpp */; };
 		27B2EDFC2249FC10006F0D2C /* ModelHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EDFA2249FC10006F0D2C /* ModelHandler.cpp */; };
 		27B2EE00224AFA84006F0D2C /* TestFileIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EDFE224AFA84006F0D2C /* TestFileIO.cpp */; };
+		27B2EE02224B131C006F0D2C /* ImageTesting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EE01224B131C006F0D2C /* ImageTesting.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,7 @@
 		27B2EDFB2249FC10006F0D2C /* ModelHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ModelHandler.hpp; sourceTree = "<group>"; };
 		27B2EDFD224AF9D4006F0D2C /* Catch2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Catch2.hpp; sourceTree = "<group>"; };
 		27B2EDFE224AFA84006F0D2C /* TestFileIO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestFileIO.cpp; sourceTree = "<group>"; };
+		27B2EE01224B131C006F0D2C /* ImageTesting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageTesting.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				27B2EDFA2249FC10006F0D2C /* ModelHandler.cpp */,
 				27B2EDFB2249FC10006F0D2C /* ModelHandler.hpp */,
 				27B2EDFE224AFA84006F0D2C /* TestFileIO.cpp */,
+				27B2EE01224B131C006F0D2C /* ImageTesting.cpp */,
 			);
 			path = "Naive Bayes";
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 				271ADCA222498B8300EA4DC3 /* Model.cpp in Sources */,
 				27B2EDFC2249FC10006F0D2C /* ModelHandler.cpp in Sources */,
 				27B2EE00224AFA84006F0D2C /* TestFileIO.cpp in Sources */,
+				27B2EE02224B131C006F0D2C /* ImageTesting.cpp in Sources */,
 				271ADC99224541C500EA4DC3 /* FileIO.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
