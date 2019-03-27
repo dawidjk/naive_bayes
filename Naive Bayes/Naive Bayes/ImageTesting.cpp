@@ -52,7 +52,6 @@ TEST_CASE( "Load Descriptor Successfully", "[Image]" ) {
     FileIO file_io;
     std::string file = "/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/traininglabels";
     file_io.OpenFileRead(file);
-    
     int descriptor = file_io.ReadInt();
     
     ImageSet image_set;
@@ -62,7 +61,6 @@ TEST_CASE( "Load Descriptor Successfully", "[Image]" ) {
 }
 
 TEST_CASE( "Check Size Correctly", "[Image]" ) {
-    FileIO file_io;
     std::string file_path = "/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/training";
     
     ImageSet image_set;

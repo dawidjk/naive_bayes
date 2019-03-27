@@ -14,10 +14,10 @@ const std::string kSavedLocation = "Enter saved model location: ";
 const std::string kSpace = " ";
 const std::string kNotOpen = "File not open for reading";
 
-bool Model::Train(ImageSet set, int smooth_factor) {
+bool Model::Train(ImageSet set, double smooth_factor) {
     int feature_count[CLASSES][IMAGE_SIZE][IMAGE_SIZE] = {{{ 0 }}};
     
-    if (set.Size() == MISMATCHED_DIM) {
+    if (set.Size() == MISMATCHED_DIM || set.Size() == 0) {
         return false;
     }
     
@@ -108,6 +108,7 @@ bool Model::LoadModel(std::string file_location) {
     }
     
     file_io.Close();
+    
     return true;
 }
 

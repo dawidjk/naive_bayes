@@ -21,6 +21,12 @@ TEST_CASE( "Open Read File Fail", "[FileIO]" ) {
     REQUIRE( !file_io.OpenFileRead("/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/doesnotexist") );
 }
 
+TEST_CASE( "File Is Open", "[FileIO]" ) {
+    FileIO file_io;
+    file_io.OpenFileWrite ("/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/training_fake");
+    REQUIRE( file_io.GetWriteFile().is_open() );
+}
+
 TEST_CASE( "Open Write File Successfully", "[FileIO]" ) {
     std::string file = "/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/fake_file";
      std::remove("/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/fake_file");
