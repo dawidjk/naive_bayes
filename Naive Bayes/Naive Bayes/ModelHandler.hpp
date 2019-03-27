@@ -23,6 +23,7 @@ private:
     void SaveModel();
     void ConfusionMatrix(std::vector<int> labels, std::string file_location);
     bool PerformAction(std::string action_text);
+    
 public:
     void TrainModel(double smoothing_factor);
     void ClassifyImages();

@@ -19,10 +19,10 @@ class Model {
 private:
     double model[CLASSES][IMAGE_SIZE][IMAGE_SIZE] = {{{ 0 }}};
     int class_count[CLASSES] = { 0 };
-    
     int ValueOfEvaulation(double probabilities[CLASSES]);
     friend std::ostream& operator << (std::ostream& os, const Model& model);
     friend std::istream& operator >> (std::istream& is, Model& model);
+    
 public:
     bool LoadModel(std::string file_location);
     bool Train(ImageSet set, double smooth_factor);

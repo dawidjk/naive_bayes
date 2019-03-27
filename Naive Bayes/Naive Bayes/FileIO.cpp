@@ -34,8 +34,10 @@ std::string FileIO::ReadLine() {
 int FileIO::ReadInt() {
     if (read_file.is_open()) {
         std::string value;
+        
         if (!read_file.eof()) {
             read_file >> value;
+            
             return std::stoi(value);
         }
         
@@ -48,8 +50,10 @@ int FileIO::ReadInt() {
 double FileIO::ReadDouble() {
     if (read_file.is_open()) {
         std::string value;
+        
         if (!read_file.eof()) {
             read_file >> value;
+            
             return std::stod(value);
         }
         

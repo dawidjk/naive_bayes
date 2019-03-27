@@ -37,9 +37,11 @@ void ModelHandler::TrainModel(double training_factor) {
     
     LoadImageSet();
     LoadDescriptor();
+    
     if (!model.Train(image_set, training_factor)) {
         std::cout << std::endl << kMismatchedDim << std::endl;
     }
+    
     SaveModel();
 }
 
@@ -205,6 +207,7 @@ double ModelHandler::FindBestSmoothingFactor(double start, double end, double in
     std::cout << kTest << std::endl;
     
     loaded = FILE_NOT_OPEN;
+    
     while (loaded == FILE_NOT_OPEN) {
         std::cout << kImageSet << std::endl;
         std::cin >> test_images;
@@ -227,6 +230,7 @@ double ModelHandler::FindBestSmoothingFactor(double start, double end, double in
         }
         
         std::vector<int> labels;
+        
         for (int i = 0; i < test_set.ImageSetSize(); ++i) {
             labels.push_back(model.Evaluate(test_set.GetImageAt(i)));
         }
