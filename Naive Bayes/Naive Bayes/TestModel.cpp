@@ -76,11 +76,3 @@ TEST_CASE( "Test Evaulate second", "[Model]" ) {
     
     REQUIRE(model.Evaluate(test_images.GetImageAt(1)) == 0);
 }
-
-TEST_CASE( "Test Evaulate Fail", "[Model]" ) {
-    std::string file = "/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/";
-    
-    Model model;
-    
-    REQUIRE(!model.LoadModel(file + "training_fake"));
-}
