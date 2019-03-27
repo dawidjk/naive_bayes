@@ -60,7 +60,7 @@ TEST_CASE( "Load Descriptor Successfully", "[Image]" ) {
     REQUIRE(descriptor == image_set.GetDescriptorAt(0));
 }
 
-TEST_CASE( "Check Size Correctly", "[Image]" ) {
+TEST_CASE( "Check Set Size Correctly", "[Image]" ) {
     std::string file_path = "/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/training";
     
     ImageSet image_set;
@@ -68,4 +68,32 @@ TEST_CASE( "Check Size Correctly", "[Image]" ) {
     image_set.LoadDescriptors(file_path + "labels");
     
     REQUIRE(image_set.Size() == 5000);
+}
+
+TEST_CASE( "Check Image Size Correctly", "[Image]" ) {
+    std::string file_path = "/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/training";
+    
+    ImageSet image_set;
+    image_set.LoadSet(file_path + "images", true);
+    
+    REQUIRE(image_set.ImageSetSize() == 5000);
+}
+
+TEST_CASE( "Check Descriptor Size Correctly", "[Image]" ) {
+    std::string file_path = "/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/training";
+    
+    ImageSet image_set;
+    image_set.LoadDescriptors(file_path + "labels");
+    
+    REQUIRE(image_set.DescriptorSize() == 5000);
+}
+
+TEST_CASE( "Check Dim Mismatched", "[Image]" ) {
+    std::string file_path = "/Users/dave07747/Documents/CS126/naivebayes-dawidjk/digitdata/";
+    
+    ImageSet image_set;
+    image_set.LoadSet(file_path + "trainingimages", true);
+    image_set.LoadDescriptors(file_path + "testlabels");
+    
+    REQUIRE(image_set.Size() == MISMATCHED_DIM);
 }
