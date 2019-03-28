@@ -12,9 +12,9 @@
 		271ADC9F22454A1100EA4DC3 /* ImageSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271ADC9D22454A1100EA4DC3 /* ImageSet.cpp */; };
 		271ADCA222498B8300EA4DC3 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 271ADCA022498B8300EA4DC3 /* Model.cpp */; };
 		27B2EDFC2249FC10006F0D2C /* ModelHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EDFA2249FC10006F0D2C /* ModelHandler.cpp */; };
-		27B2EE00224AFA84006F0D2C /* TestFileIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EDFE224AFA84006F0D2C /* TestFileIO.cpp */; };
-		27B2EE02224B131C006F0D2C /* ImageTesting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EE01224B131C006F0D2C /* ImageTesting.cpp */; };
-		27B2EE04224B2E90006F0D2C /* TestModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EE03224B2E90006F0D2C /* TestModel.cpp */; };
+		27B2EE0A224BF0E1006F0D2C /* TestModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EE07224BF0E1006F0D2C /* TestModel.cpp */; };
+		27B2EE0B224BF0E1006F0D2C /* TestFileIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EE08224BF0E1006F0D2C /* TestFileIO.cpp */; };
+		27B2EE0C224BF0E1006F0D2C /* ImageTesting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27B2EE09224BF0E1006F0D2C /* ImageTesting.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,9 +42,9 @@
 		27B2EDFA2249FC10006F0D2C /* ModelHandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ModelHandler.cpp; sourceTree = "<group>"; };
 		27B2EDFB2249FC10006F0D2C /* ModelHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ModelHandler.hpp; sourceTree = "<group>"; };
 		27B2EDFD224AF9D4006F0D2C /* Catch2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Catch2.hpp; sourceTree = "<group>"; };
-		27B2EDFE224AFA84006F0D2C /* TestFileIO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestFileIO.cpp; sourceTree = "<group>"; };
-		27B2EE01224B131C006F0D2C /* ImageTesting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageTesting.cpp; sourceTree = "<group>"; };
-		27B2EE03224B2E90006F0D2C /* TestModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestModel.cpp; sourceTree = "<group>"; };
+		27B2EE07224BF0E1006F0D2C /* TestModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestModel.cpp; sourceTree = "<group>"; };
+		27B2EE08224BF0E1006F0D2C /* TestFileIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestFileIO.cpp; sourceTree = "<group>"; };
+		27B2EE09224BF0E1006F0D2C /* ImageTesting.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageTesting.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +77,9 @@
 		272B23A22238266B00A741C1 /* Naive Bayes */ = {
 			isa = PBXGroup;
 			children = (
+				27B2EE09224BF0E1006F0D2C /* ImageTesting.cpp */,
+				27B2EE08224BF0E1006F0D2C /* TestFileIO.cpp */,
+				27B2EE07224BF0E1006F0D2C /* TestModel.cpp */,
 				27B2EDFD224AF9D4006F0D2C /* Catch2.hpp */,
 				271ADC97224541C500EA4DC3 /* FileIO.cpp */,
 				271ADC98224541C500EA4DC3 /* FileIO.hpp */,
@@ -88,9 +91,6 @@
 				271ADCA122498B8300EA4DC3 /* Model.hpp */,
 				27B2EDFA2249FC10006F0D2C /* ModelHandler.cpp */,
 				27B2EDFB2249FC10006F0D2C /* ModelHandler.hpp */,
-				27B2EDFE224AFA84006F0D2C /* TestFileIO.cpp */,
-				27B2EE01224B131C006F0D2C /* ImageTesting.cpp */,
-				27B2EE03224B2E90006F0D2C /* TestModel.cpp */,
 			);
 			path = "Naive Bayes";
 			sourceTree = "<group>";
@@ -154,12 +154,12 @@
 			files = (
 				271ADC9F22454A1100EA4DC3 /* ImageSet.cpp in Sources */,
 				271ADC9C2245428300EA4DC3 /* Image.cpp in Sources */,
+				27B2EE0C224BF0E1006F0D2C /* ImageTesting.cpp in Sources */,
 				271ADCA222498B8300EA4DC3 /* Model.cpp in Sources */,
 				27B2EDFC2249FC10006F0D2C /* ModelHandler.cpp in Sources */,
-				27B2EE00224AFA84006F0D2C /* TestFileIO.cpp in Sources */,
-				27B2EE02224B131C006F0D2C /* ImageTesting.cpp in Sources */,
 				271ADC99224541C500EA4DC3 /* FileIO.cpp in Sources */,
-				27B2EE04224B2E90006F0D2C /* TestModel.cpp in Sources */,
+				27B2EE0B224BF0E1006F0D2C /* TestFileIO.cpp in Sources */,
+				27B2EE0A224BF0E1006F0D2C /* TestModel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

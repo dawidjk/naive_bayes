@@ -257,6 +257,7 @@ double ModelHandler::FindBestSmoothingFactor(double start, double end, double in
         if (train_accuracy > accuracy) {
             accuracy = train_accuracy;
             smoothing_factor = i;
+            std::cout << accuracy << " " << smoothing_factor << std::endl;
         }
     }
     
